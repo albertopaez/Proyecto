@@ -6,6 +6,8 @@
 package modelo;
 
 import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,19 +19,74 @@ public class ModeloDepartamento extends Database {
     /** Constructor de clase */
     public ModeloDepartamento (){}
     
-    /** Obtiene registros de la tabla PRODUCTO y los devuelve en un DefaultTableModel*/
-    public DefaultTableModel getTablaDepartamento(){
-        System.out.println("getTablaDepartamento se esta ejecutando");
+    /** Obtiene registros de la tabla Departamento y los devuelve en un DefaultComboBoxModel*/
+    public DefaultComboBoxModel getListaDepartamento(){
+      String nombre;
+      DefaultComboBoxModel ahh = new DefaultComboBoxModel();
+			// plantilla=new DefaultTableModel(null,headers);
+			// tabla.setModel(plantilla);
+
+			ArrayList<String> elementos=new ArrayList<String>();
+			try {
+				this.getConexion();
+				PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreDepartamento FROM Departamentos");
+				ResultSet res = pstm.executeQuery();
+				while (res.next()) {
+					nombre = res.getString("nombreDepartamento");
+
+					elementos.add(nombre);
+				}
+				//plantilla=new DefaultComboBoxModel(items);
+				pstm.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return new DefaultComboBoxModel(elementos.toArray());    }
+    
+    public boolean NuevoDepartamento(String nombreDepartamento)
+    {
+        
+        if( valida_datos(nombreDepartamento)  )
+        {
+            //Se arma la consulta
+            String q=" INSERT INTO Departamentos ( nombreDepartamento  ) "
+                    + "VALUES ( '" + nombreDepartamento + "' )";
+            //se ejecuta la consulta
+            try {
+                PreparedStatement pstm = this.getConexion().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println( e.getMessage() );
+            }
+            return false;
+        }
+        else
+         return false;
+    }
+    
+    
+    private boolean valida_datos(String nombreDepartamento){
+        if( nombreDepartamento.equals("") ){
+            return false;
+        }else return true;
+    }
+    
+    
+    public DefaultTableModel getTablaDepartamentoProfesores(String departamento)
+    {
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0;
-      String[] columNames = {"Departamento","Curso","Profesor"};
+      String[] columNames = {"Profesores"};
       //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
       //para formar la matriz de datos
       try{
-         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Departamentos");
+         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Profesores WHERE nombreDepartamento='"+departamento+"'");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
+         System.out.println(registros);
          res.close();
       }catch(SQLException e){
          System.err.println( e.getMessage() );
@@ -38,16 +95,13 @@ public class ModeloDepartamento extends Database {
     Object[][] data = new String[registros][5];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreDepartamento, idProfesor, idCurso FROM Departamentos");
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreProfesor FROM Profesores WHERE nombreDepartamento='"+departamento+"'");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString( "nombreDepartamento" );
-                data[i][1] = res.getString( "idCurso" );
-                data[i][2] = res.getString( "idProfesor" );
+                data[i][0] = res.getString( "nombreProfesor" );
             i++;
          }
-         
          res.close();
          //se añade la matriz de datos en el DefaultTableModel
          tablemodel.setDataVector(data, columNames );
@@ -55,6 +109,61 @@ public class ModeloDepartamento extends Database {
             System.err.println( e.getMessage() );
         }
         return tablemodel;
+    }
+    
+    public DefaultTableModel getTablaDepartamentoCursos(String departamento)
+    {
+      DefaultTableModel tablemodel = new DefaultTableModel();
+      int registros = 0;
+      String[] columNames = {"Cursos"};
+      //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
+      //para formar la matriz de datos
+      try{
+         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
+         ResultSet res = pstm.executeQuery();
+         res.next();
+         registros = res.getInt("total");
+         System.out.println(registros);
+         res.close();
+      }catch(SQLException e){
+         System.err.println( e.getMessage() );
+      }
+    //se crea una matriz con tantas filas y columnas que necesite
+    Object[][] data = new String[registros][5];
+      try{
+          //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT C.materia FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
+         ResultSet res = pstm.executeQuery();
+         int i=0;
+         while(res.next()){
+                data[i][0] = res.getString( "materia" );
+            i++;
+         }
+         res.close();
+         //se añade la matriz de datos en el DefaultTableModel
+         tablemodel.setDataVector(data, columNames );
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return tablemodel;
+    }
+    
+    /** Elimina un registro dado su ID -> Llave primaria */
+    public boolean EliminarDepartamento( String id )
+    {
+         boolean res=false;
+        //se arma la consulta
+        String q = " DELETE FROM Departamentos WHERE  nombreDepartamento='" + id + "' " ;
+        //se ejecuta la consulta
+         try {
+            PreparedStatement pstm = this.getConexion().prepareStatement(q);
+            pstm.execute();
+            pstm.close();
+            res=true;
+         }catch(SQLException e){
+            System.err.println( e.getMessage() );
+        }
+        return res;
     }
     
 
