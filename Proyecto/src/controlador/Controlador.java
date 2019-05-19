@@ -9,21 +9,23 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
-//se importa modelo e interfaz
+//se importa modeloDepartamento e interfaz
 import modelo.ModeloDepartamento;
+import modelo.ModeloProfesor;
 import vista.Interfaz;
 /**
  * @author Alberto
  */
 
-public class ControladorDepartamento implements ActionListener,MouseListener, ItemListener{
+public class Controlador implements ActionListener,MouseListener, ItemListener{
 	
 	 
 
     /* instancia a nuestra interfaz de usuario*/
     Interfaz vista ;
-    /** instancia a nuestro modelo */
-    ModeloDepartamento modelo = new ModeloDepartamento();
+    /** instancia a nuestro modeloDepartamento */
+    ModeloDepartamento modeloDepartamento = new ModeloDepartamento();
+    ModeloProfesor modeloProfesor = new ModeloProfesor();
 
     /** Se declaran en un ENUM las acciones que se realizan desde la
  interfaz de usuario VISTA y posterior ejecución desde el Controlador
@@ -32,13 +34,17 @@ public class ControladorDepartamento implements ActionListener,MouseListener, It
     {
         __AGREGAR_DEPARTAMENTOS,
         __ELIMINAR_DEPARTAMENTOS,
-        __DEPARTAMENTOS_DESPLEGABLE
+        __DEPARTAMENTOS_DESPLEGABLE,
+        __AGREGAR_PROFESOR,
+        __ELIMINAR_PROFESOR,
+        __MOSTRAR_PROFESORES,
+        __BUSCAR_PROFESOR
     }
 
     /** Constrcutor de clase
      * @param vista Instancia de clase interfaz
      */
-    public ControladorDepartamento( Interfaz vista )
+    public Controlador( Interfaz vista )
     {
         this.vista = vista;
     }
@@ -63,31 +69,46 @@ public class ControladorDepartamento implements ActionListener,MouseListener, It
         //declara una acción y añade un escucha al evento producido por el componente
         this.vista.__ELIMINAR_DEPARTAMENTOS.setActionCommand( "__ELIMINAR_DEPARTAMENTOS" );
         this.vista.__ELIMINAR_DEPARTAMENTOS.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__AGREGAR_PROFESOR.setActionCommand( "__ELIMINAR_DEPARTAMENTOS" );
+        this.vista.__AGREGAR_PROFESOR.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__ELIMINAR_PROFESOR.setActionCommand( "__ELIMINAR_DEPARTAMENTOS" );
+        this.vista.__ELIMINAR_PROFESOR.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__MOSTRAR_PROFESORES.setActionCommand( "__ELIMINAR_DEPARTAMENTOS" );
+        this.vista.__MOSTRAR_PROFESORES.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__BUSCAR_PROFESOR.setActionCommand( "__ELIMINAR_DEPARTAMENTOS" );
+        this.vista.__BUSCAR_PROFESOR.addActionListener(this);
+        
         
         //añade e inicia el jtable con un DefaultTableModel vacio
         this.vista.__tabla_departamentosCursos.addMouseListener(this);
         this.vista.__tabla_departamentosCursos.setModel( new DefaultTableModel() );
-        
         //añade e inicia el jtable con un DefaultTableModel vacio
         this.vista.__tabla_departamentosProfesores.addMouseListener(this);
         this.vista.__tabla_departamentosProfesores.setModel( new DefaultTableModel() );
+        //añade e inicia el jtable con un DefaultTableModel vacio
+        this.vista.__tabla_profesores.addMouseListener(this);
+        this.vista.__tabla_profesores.setModel( new DefaultTableModel() );
+        
         
         //añade e inicia el comboBox con una lista de los departamentos
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.addMouseListener(this);
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.addItemListener(this);
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel( new DefaultComboBoxModel() );
-        this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel( this.modelo.getListaDepartamento() );
+        this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
         
     }
-    
     @Override
     public void itemStateChanged(ItemEvent e) {
         this.vista.__tabla_departamentosProfesores.setModel
-        ( this.modelo.getTablaDepartamentoProfesores
+        (this.modeloDepartamento.getTablaDepartamentoProfesores
         (this.vista.__DEPARTAMENTOS_DESPLEGABLE.getSelectedItem().toString()) );
         
         this.vista.__tabla_departamentosCursos.setModel
-        ( this.modelo.getTablaDepartamentoCursos
+        (this.modeloDepartamento.getTablaDepartamentoCursos
         (this.vista.__DEPARTAMENTOS_DESPLEGABLE.getSelectedItem().toString()) );
     }
     
@@ -120,9 +141,9 @@ public class ControladorDepartamento implements ActionListener,MouseListener, It
         
         case __AGREGAR_DEPARTAMENTOS:
                 //añade un nuevo departamento
-                if ( this.modelo.NuevoDepartamento(this.vista.__departamento.getText()) )
+                if ( this.modeloDepartamento.NuevoDepartamento(this.vista.__departamento.getText()) )
                 {
-                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel( this.modelo.getListaDepartamento() );
+                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
                     JOptionPane.showMessageDialog(vista,"Exito: Nuevo departamento agregado.");
                     this.vista.__departamento.setText("") ;
                 }
@@ -132,15 +153,20 @@ public class ControladorDepartamento implements ActionListener,MouseListener, It
                 
                 
 	case __ELIMINAR_DEPARTAMENTOS:
-            if ( this.modelo.EliminarDepartamento( this.vista.__departamento.getText() ) )
+            if ( this.modeloDepartamento.EliminarDepartamento( this.vista.__departamento.getText() ) )
                 {
-                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel( this.modelo.getListaDepartamento() );
+                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
                     JOptionPane.showMessageDialog(vista,"Exito: Departamento eliminado.");
                     this.vista.__departamento.setText("");
                 }else{
                 JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar departamentos con profesores asociados.");
             }
 		break;
+                
+                case __MOSTRAR_PROFESORES:
+            //obtiene del modeloDepartamento los registros en un DefaultTableModel y lo asigna en la vista
+                this.vista.__tabla_profesores.setModel(this.modeloProfesor.getTablaProfesoresGeneral() );
+            break;
 	default:
 		break;
          
