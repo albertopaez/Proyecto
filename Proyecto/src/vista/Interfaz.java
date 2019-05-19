@@ -38,7 +38,6 @@ public class Interfaz extends javax.swing.JFrame {
         __tabla_profesores = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        __profesoresDepartamento = new javax.swing.JTextField();
         __MOSTRAR_PROFESORES = new javax.swing.JButton();
         __ELIMINAR_PROFESOR = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -50,7 +49,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        __profesoresTotorias = new javax.swing.JTextField();
+        __profesoresTutorias = new javax.swing.JTextField();
         __profesoresPassword = new javax.swing.JTextField();
         __profesoresHorasInvestigacion = new javax.swing.JTextField();
         __profesoresSueldo = new javax.swing.JTextField();
@@ -61,6 +60,7 @@ public class Interfaz extends javax.swing.JFrame {
         __profesoresBuscador = new javax.swing.JTextField();
         __BUSCAR_PROFESOR = new javax.swing.JButton();
         __AGREGAR_PROFESOR = new javax.swing.JButton();
+        __profesoresDepartamento = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -80,11 +80,11 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 738, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jTabbedPane6.addTab("Cursos", jPanel1);
@@ -93,11 +93,11 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 738, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jTabbedPane6.addTab("Alumnos", jPanel2);
@@ -137,12 +137,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("ID:");
-
-        __profesoresDepartamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __profesoresDepartamentoActionPerformed(evt);
-            }
-        });
 
         __MOSTRAR_PROFESORES.setText("Mostrar");
         __MOSTRAR_PROFESORES.addActionListener(new java.awt.event.ActionListener() {
@@ -189,9 +183,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setText("Contraseña:");
 
-        __profesoresTotorias.addActionListener(new java.awt.event.ActionListener() {
+        __profesoresTutorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __profesoresTotoriasActionPerformed(evt);
+                __profesoresTutoriasActionPerformed(evt);
             }
         });
 
@@ -224,6 +218,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setText("Buscador (id):");
 
+        __profesoresBuscador.setAutoscrolls(false);
         __profesoresBuscador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 __profesoresBuscadorActionPerformed(evt);
@@ -244,30 +239,31 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
+        __profesoresDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(__profesoresidProfesor))
-                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel7)
+                            .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(__profesoresTotorias, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(__profesoresNombre))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(__profesoresDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(__profesoresidProfesor))
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(__profesoresNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(__profesoresTutorias, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(__profesoresTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
@@ -280,7 +276,7 @@ public class Interfaz extends javax.swing.JFrame {
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(__profesoresHorasInvestigacion, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                                .addComponent(__profesoresHorasInvestigacion, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -303,15 +299,16 @@ public class Interfaz extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(__ELIMINAR_PROFESOR, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(__profesoresTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(__profesoresBuscador)))
                 .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(__profesoresDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,21 +326,21 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(__profesoresSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(__profesoresDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
                     .addComponent(__profesoresUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(__profesoresTutorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(__profesoresPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(__profesoresTotorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(__profesoresTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(__profesoresDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(__profesoresBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -353,7 +350,7 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(__ELIMINAR_PROFESOR, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(__BUSCAR_PROFESOR, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(__AGREGAR_PROFESOR, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -381,7 +378,7 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 735, Short.MAX_VALUE)
+            .addGap(0, 738, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -390,7 +387,7 @@ public class Interfaz extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 626, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -521,7 +518,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 723, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 726, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -569,10 +566,6 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event___DEPARTAMENTOS_DESPLEGABLEActionPerformed
 
-    private void __profesoresDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresDepartamentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___profesoresDepartamentoActionPerformed
-
     private void __MOSTRAR_PROFESORESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___MOSTRAR_PROFESORESActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event___MOSTRAR_PROFESORESActionPerformed
@@ -589,9 +582,9 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event___profesoresUsuarioActionPerformed
 
-    private void __profesoresTotoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresTotoriasActionPerformed
+    private void __profesoresTutoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresTutoriasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event___profesoresTotoriasActionPerformed
+    }//GEN-LAST:event___profesoresTutoriasActionPerformed
 
     private void __profesoresPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresPasswordActionPerformed
         // TODO add your handling code here:
@@ -663,13 +656,13 @@ public class Interfaz extends javax.swing.JFrame {
     public javax.swing.JButton __MOSTRAR_PROFESORES;
     public javax.swing.JTextField __departamento;
     public javax.swing.JTextField __profesoresBuscador;
-    public javax.swing.JTextField __profesoresDepartamento;
+    public javax.swing.JComboBox<String> __profesoresDepartamento;
     public javax.swing.JTextField __profesoresHorasInvestigacion;
     public javax.swing.JTextField __profesoresNombre;
     public javax.swing.JTextField __profesoresPassword;
     public javax.swing.JTextField __profesoresSueldo;
-    private javax.swing.JComboBox<String> __profesoresTipo;
-    public javax.swing.JTextField __profesoresTotorias;
+    public javax.swing.JComboBox<String> __profesoresTipo;
+    public javax.swing.JTextField __profesoresTutorias;
     public javax.swing.JTextField __profesoresUsuario;
     public javax.swing.JTextField __profesoresidProfesor;
     public javax.swing.JTable __tabla_departamentosCursos;

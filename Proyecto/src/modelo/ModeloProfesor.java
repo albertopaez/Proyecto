@@ -19,39 +19,6 @@ public class ModeloProfesor extends Database {
     /** Constructor de clase */
     public ModeloProfesor (){}
     
-    
-    
-    public boolean NuevoDepartamento(String nombreDepartamento)
-    {
-        
-        if( valida_datos(nombreDepartamento)  )
-        {
-            //Se arma la consulta
-            String q=" INSERT INTO Departamentos ( nombreDepartamento  ) "
-                    + "VALUES ( '" + nombreDepartamento + "' )";
-            //se ejecuta la consulta
-            try {
-                PreparedStatement pstm = this.getConexion().prepareStatement(q);
-                pstm.execute();
-                pstm.close();
-                return true;
-            }catch(SQLException e){
-                System.err.println( e.getMessage() );
-            }
-            return false;
-        }
-        else
-         return false;
-    }
-    
-    
-    private boolean valida_datos(String nombreDepartamento){
-        if( nombreDepartamento.equals("") ){
-            return false;
-        }else return true;
-    }
-    
-    
     public DefaultTableModel getTablaProfesoresGeneral()
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
@@ -90,32 +57,30 @@ public class ModeloProfesor extends Database {
         return tablemodel;
     }
     
-    public DefaultTableModel getTablaDepartamentoCursos(String departamento)
+    public DefaultTableModel getTablaProfesorPersonal(String idProfesor)
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0;
-      String[] columNames = {"Cursos"};
-      //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
-      //para formar la matriz de datos
-      try{
-         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
-         ResultSet res = pstm.executeQuery();
-         res.next();
-         registros = res.getInt("total");
-         System.out.println(registros);
-         res.close();
-      }catch(SQLException e){
-         System.err.println( e.getMessage() );
-      }
+      String[] columNames = {"Nombre", "Departamento", "Tipo", "Tutorias", "Horas de Investigación", "Sueldo",
+          "ID", "Usuario", "Contraseña"};
+      
     //se crea una matriz con tantas filas y columnas que necesite
-    Object[][] data = new String[registros][5];
+    Object[][] data = new String[1][9];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT C.materia FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT * FROM Profesores WHERE idProfesor='"+idProfesor+"'");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString( "materia" );
+                data[i][0] = res.getString( "nombreProfesor" );
+                data[i][1] = res.getString( "nombreDepartamento" );
+                data[i][2] = res.getString( "tipoProfesor" );
+                data[i][3] = res.getString( "tutorias" );
+                data[i][4] = res.getString( "horasInvestigacion" );
+                data[i][5] = res.getString("sueldo" );
+                data[i][6] = res.getString( "idProfesor" );
+                data[i][7] = res.getString( "usuario" );
+                data[i][8] = res.getString( "contrasena" );
             i++;
          }
          res.close();
@@ -128,11 +93,11 @@ public class ModeloProfesor extends Database {
     }
     
     /** Elimina un registro dado su ID -> Llave primaria */
-    public boolean EliminarDepartamento( String id )
+    public boolean EliminarProfesor( String id )
     {
          boolean res=false;
         //se arma la consulta
-        String q = " DELETE FROM Departamentos WHERE  nombreDepartamento='" + id + "' " ;
+        String q = " DELETE FROM Profesores WHERE  idProfesor='" + id + "' " ;
         //se ejecuta la consulta
          try {
             PreparedStatement pstm = this.getConexion().prepareStatement(q);
@@ -145,6 +110,55 @@ public class ModeloProfesor extends Database {
         return res;
     }
     
+    /** Registra un nuevo producto */
+    public boolean nuevoProfesor(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
+            String tutorias, String horasInvestigacion,String sueldo, String idProfesor,
+            String usuario, String contrasena)
+            
+    {
+        if( valida_datos( nombreProfesor,  nombreDepartamento ,  tipoProfesor,
+             tutorias,  horasInvestigacion, sueldo,  idProfesor,
+             usuario,  contrasena)  )
+        {
+            if(tipoProfesor=="Asociado"){
+            horasInvestigacion = "0";
+        }
+            //se reemplaza "," por "."
+            sueldo = sueldo.replace(",", ".");
+            sueldo = sueldo.replace("'", ".");
+            //Se arma la consulta
+            String q=" INSERT INTO Profesores ( nombreProfesor,  nombreDepartamento ,  tipoProfesor, "
+                    + "tutorias,  horasInvestigacion, sueldo,  idProfesor, usuario,  contrasena  ) "
+                    + "VALUES ( '" + nombreProfesor + "','" + nombreDepartamento + "', '" +
+                    tipoProfesor + "','" + tutorias + "'," + horasInvestigacion + "," +
+                    sueldo + ", '" + idProfesor + "','" + usuario + "','" + contrasena +"' ) ";
+            
+            
+            
+            //se ejecuta la consulta
+            try {
+                PreparedStatement pstm = this.getConexion().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println( e.getMessage() );
+            }
+            return false;
+        }
+        else
+         return false;
+    }
+    
+    private boolean valida_datos(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
+            String tutorias, String horasInvestigacion,String sueldo, String idProfesor,
+            String usuario, String contrasena){
+        
+        if( nombreDepartamento.equals("") || nombreProfesor.equals("") || tipoProfesor.equals("") || tutorias.equals("")
+                 || sueldo.equals("") || idProfesor.equals("") || usuario.equals("") || contrasena.equals("")){
+            return false;
+        }else return true;
+    }
 
 }
     
