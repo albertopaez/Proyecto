@@ -41,7 +41,8 @@ public class ModeloDepartamento extends Database {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return new DefaultComboBoxModel(elementos.toArray());    }
+			return new DefaultComboBoxModel(elementos.toArray());    
+    }
     
     public boolean NuevoDepartamento(String nombreDepartamento)
     {
@@ -132,11 +133,11 @@ public class ModeloDepartamento extends Database {
     Object[][] data = new String[registros][5];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT C.materia FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT C.nombreCurso FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString( "materia" );
+                data[i][0] = res.getString( "nombreCurso" );
             i++;
          }
          res.close();

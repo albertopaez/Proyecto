@@ -113,8 +113,7 @@ public class ModeloProfesor extends Database {
     /** Registra un nuevo producto */
     public boolean nuevoProfesor(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
             String tutorias, String horasInvestigacion,String sueldo, String idProfesor,
-            String usuario, String contrasena)
-            
+            String usuario, String contrasena)     
     {
         if( valida_datos( nombreProfesor,  nombreDepartamento ,  tipoProfesor,
              tutorias,  horasInvestigacion, sueldo,  idProfesor,
@@ -158,6 +157,30 @@ public class ModeloProfesor extends Database {
                  || sueldo.equals("") || idProfesor.equals("") || usuario.equals("") || contrasena.equals("")){
             return false;
         }else return true;
+    }
+    
+    public DefaultComboBoxModel getListaProfesor(){
+      String nombre;
+      DefaultComboBoxModel ahh = new DefaultComboBoxModel();
+			// plantilla=new DefaultTableModel(null,headers);
+			// tabla.setModel(plantilla);
+
+			ArrayList<String> elementos=new ArrayList<String>();
+			try {
+				this.getConexion();
+				PreparedStatement pstm = this.getConexion().prepareStatement("SELECT idProfesor FROM Profesores");
+				ResultSet res = pstm.executeQuery();
+				while (res.next()) {
+					nombre = res.getString("idProfesor");
+
+					elementos.add(nombre);
+				}
+				//plantilla=new DefaultComboBoxModel(items);
+				pstm.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return new DefaultComboBoxModel(elementos.toArray());    
     }
 
 }
