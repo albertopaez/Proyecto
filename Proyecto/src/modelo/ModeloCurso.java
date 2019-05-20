@@ -136,6 +136,30 @@ public class ModeloCurso extends Database {
         }else return true;
     }
     
+    public DefaultComboBoxModel getListaCurso(){
+      String nombre;
+      DefaultComboBoxModel ahh = new DefaultComboBoxModel();
+			// plantilla=new DefaultTableModel(null,headers);
+			// tabla.setModel(plantilla);
+
+			ArrayList<String> elementos=new ArrayList<String>();
+			try {
+				this.getConexion();
+				PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreCurso FROM Cursos");
+				ResultSet res = pstm.executeQuery();
+				while (res.next()) {
+					nombre = res.getString("nombreCurso");
+
+					elementos.add(nombre);
+				}
+				//plantilla=new DefaultComboBoxModel(items);
+				pstm.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return new DefaultComboBoxModel(elementos.toArray());    
+    }
+    
     
     
     

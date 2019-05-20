@@ -19,7 +19,7 @@ import vista.Interfaz;
  * @author Alberto
  */
 
-public class Controlador implements ActionListener,MouseListener, ItemListener{
+public class Controlador implements ActionListener, MouseListener, ItemListener{
 	
 	 
 
@@ -45,7 +45,13 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
         __BUSCAR_PROFESOR,
         __MOSTRAR_CURSOS,
         __AGREGAR_CURSO,
-        __ELIMINAR_CURSO
+        __ELIMINAR_CURSO,
+        __MOSTRAR_ALUMNOS,
+        __BUSCAR_ALUMNO,
+        __AGREGAR_ALUMNO,
+        __ELIMINAR_ALUMNO,
+        __MATRICULAR_EN_CURSO,
+        __DESMATRICULAR_DE_CURSO
         
     }
 
@@ -97,6 +103,24 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
         //declara una acción y añade un escucha al evento producido por el componente
         this.vista.__ELIMINAR_CURSO.setActionCommand( "__ELIMINAR_CURSO" );
         this.vista.__ELIMINAR_CURSO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__MOSTRAR_ALUMNOS.setActionCommand( "__MOSTRAR_ALUMNOS" );
+        this.vista.__MOSTRAR_ALUMNOS.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__BUSCAR_ALUMNO.setActionCommand( "__BUSCAR_ALUMNO" );
+        this.vista.__BUSCAR_ALUMNO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__AGREGAR_ALUMNO.setActionCommand( "__AGREGAR_ALUMNO" );
+        this.vista.__AGREGAR_ALUMNO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__ELIMINAR_ALUMNO.setActionCommand( "__ELIMINAR_ALUMNO" );
+        this.vista.__ELIMINAR_ALUMNO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__MATRICULAR_EN_CURSO.setActionCommand( "__MATRICULAR_EN_CURSO" );
+        this.vista.__MATRICULAR_EN_CURSO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__DESMATRICULAR_DE_CURSO.setActionCommand( "__DESMATRICULAR_DE_CURSO" );
+        this.vista.__DESMATRICULAR_DE_CURSO.addActionListener(this);
         
         
         //añade e inicia el jtable con un DefaultTableModel vacio
@@ -111,6 +135,9 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
         //añade e inicia el jtable con un DefaultTableModel vacio
         this.vista.__tabla_cursos.addMouseListener(this);
         this.vista.__tabla_cursos.setModel( new DefaultTableModel() );
+        //añade e inicia el jtable con un DefaultTableModel vacio
+        this.vista.__tabla_alumnos.addMouseListener(this);
+        this.vista.__tabla_alumnos.setModel( new DefaultTableModel() );
         
         
         
@@ -139,6 +166,10 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
         this.vista.__cursosTipo.setModel( new DefaultComboBoxModel() );
         this.vista.__cursosTipo.addItem("Completo");
         this.vista.__cursosTipo.addItem("De Verano");
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__alumnosCurso.addItemListener(this);
+        this.vista.__alumnosCurso.setModel( new DefaultComboBoxModel() );
+        this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
         
     }
     @Override
@@ -166,6 +197,10 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
              int filac = this.vista.__tabla_cursos.rowAtPoint(e.getPoint());
              if (filac > -1){                
                 this.vista.__cursosidCurso.setText( String.valueOf( this.vista.__tabla_cursos.getValueAt(filac, 0) ));
+             }
+             int filaa = this.vista.__tabla_alumnos.rowAtPoint(e.getPoint());
+             if (filaa > -1){                
+                this.vista.__alumnosBuscador.setText( String.valueOf( this.vista.__tabla_alumnos.getValueAt(filaa, 1) ));
              }
         }
     }
@@ -251,7 +286,7 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
                         this.vista.__profesoresPassword.setText("");
                 }else //ocurrio un error
                     JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
-                
+                break;
                 
                 
                 
@@ -278,7 +313,6 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
                         this.vista.__cursosCreditos.getText(),
                         this.vista.__cursosHoras.getText() ,
                         this.vista.__cursosPrecio.getText()) )
-                    
                 {
                     this.vista.__tabla_cursos.setModel( this.modeloCurso.getTablaCursos() );
                     JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
@@ -288,13 +322,25 @@ public class Controlador implements ActionListener,MouseListener, ItemListener{
                         this.vista.__cursosPrecio.setText("");
                 }else //ocurrio un error
                     JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                break;
                 
                 
                 
                 
-                
-                
-                
+                case __MOSTRAR_ALUMNOS:
+            //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
+                this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral() );
+            break;
+                case __ELIMINAR_ALUMNO:
+            if ( this.modeloAlumno.EliminarAlumno( this.vista.__alumnosBuscador.getText() ) )
+                {
+                    this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Alumno eliminado.");
+                    this.vista.__alumnosBuscador.setText("");
+                }else{
+                JOptionPane.showMessageDialog(vista,"Fallo: Los datos son incorrectos.");
+            }
+		break;
                 
                 
                 

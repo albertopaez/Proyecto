@@ -37,7 +37,7 @@ public class ModeloProfesor extends Database {
          System.err.println( e.getMessage() );
       }
     //se crea una matriz con tantas filas y columnas que necesite
-    Object[][] data = new String[registros][5];
+    Object[][] data = new String[registros][2];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
          PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreProfesor, idProfesor FROM Profesores");

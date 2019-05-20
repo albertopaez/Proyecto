@@ -94,7 +94,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane6" pref="698" max="32767" attributes="0"/>
+                          <Component id="jScrollPane6" pref="706" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -116,7 +116,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="__tabla_profesores1">
+                    <Component class="javax.swing.JTable" name="__tabla_alumnos">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -182,23 +182,25 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="__profesoresidProfesor1" max="32767" attributes="0"/>
+                                      <Component id="__alumnosnombreAlumno" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="__profesoresNombre1" min="-2" pref="263" max="-2" attributes="0"/>
+                                      <Component id="__alumnosDireccion" min="-2" pref="263" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="__profesoresTutorias1" min="-2" pref="260" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="__profesoresTipo1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Component id="__alumnosUsuario" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="__alumnosMatricula" min="-2" pref="260" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -206,7 +208,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="__profesoresUsuario1" max="32767" attributes="0"/>
+                                  <Component id="__alumnosCreditosActuales" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -214,12 +216,12 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="__profesoresHorasInvestigacion1" pref="203" max="32767" attributes="0"/>
+                                          <Component id="__alumnosCorreo" pref="231" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="__profesoresSueldo1" max="32767" attributes="0"/>
+                                          <Component id="__alumnosTelefono" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -227,37 +229,48 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="__profesoresPassword1" max="32767" attributes="0"/>
+                                  <Component id="__alumnosPassword" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="__MOSTRAR_PROFESORES1" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="__BUSCAR_PROFESOR1" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="__AGREGAR_PROFESOR1" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="__ELIMINAR_PROFESOR1" min="-2" pref="137" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="__profesoresBuscador1" max="32767" attributes="0"/>
+                                  <Component id="__alumnosBuscador" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="__MOSTRAR_ALUMNOS" min="-2" pref="137" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="__BUSCAR_ALUMNO" min="-2" pref="137" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="__AGREGAR_ALUMNO" min="-2" pref="137" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="__ELIMINAR_ALUMNO" min="-2" pref="137" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="__alumnosCurso" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="__MATRICULAR_EN_CURSO" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="__DESMATRICULAR_DE_CURSO" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="__alumnosidAlumno" min="-2" pref="300" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="__profesoresDepartamento1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -266,47 +279,54 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresidProfesor1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosnombreAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresHorasInvestigacion1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosCorreo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="__profesoresNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresSueldo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="__profesoresUsuario1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosCreditosActuales" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresTutorias1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosMatricula" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresPassword1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresTipo1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosidAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosCurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__MATRICULAR_EN_CURSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="__DESMATRICULAR_DE_CURSO" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="__alumnosBuscador" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresDepartamento1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="__profesoresBuscador1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="__MOSTRAR_PROFESORES1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="__ELIMINAR_PROFESOR1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="__BUSCAR_PROFESOR1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="__AGREGAR_PROFESOR1" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="__MOSTRAR_ALUMNOS" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="__ELIMINAR_ALUMNO" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="__BUSCAR_ALUMNO" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="__AGREGAR_ALUMNO" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
@@ -319,21 +339,21 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="ID:"/>
+                    <Property name="text" type="java.lang.String" value="Nombre:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="__MOSTRAR_PROFESORES1">
+                <Component class="javax.swing.JButton" name="__MOSTRAR_ALUMNOS">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Mostrar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__MOSTRAR_PROFESORES1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__MOSTRAR_ALUMNOSActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="__ELIMINAR_PROFESOR1">
+                <Component class="javax.swing.JButton" name="__ELIMINAR_ALUMNO">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
                   </Properties>
@@ -346,7 +366,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Departamento:"/>
+                    <Property name="text" type="java.lang.String" value="Cursos:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel22">
@@ -354,28 +374,28 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nombre:"/>
+                    <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresidProfesor1">
+                <Component class="javax.swing.JTextField" name="__alumnosnombreAlumno">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresidProfesor1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosnombreAlumnoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresNombre1">
+                <Component class="javax.swing.JTextField" name="__alumnosDireccion">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresNombre1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosDireccionActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresUsuario1">
+                <Component class="javax.swing.JTextField" name="__alumnosCreditosActuales">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresUsuario1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosCreditosActualesActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -386,7 +406,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Usuario:"/>
+                    <Property name="text" type="java.lang.String" value="Creditos:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel24">
@@ -394,15 +414,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Tutorias:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel25">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Tipo:"/>
+                    <Property name="text" type="java.lang.String" value="Matricula:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel26">
@@ -413,33 +425,33 @@
                     <Property name="text" type="java.lang.String" value="Contrase&#xf1;a:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresTutorias1">
+                <Component class="javax.swing.JTextField" name="__alumnosMatricula">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresTutorias1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosMatriculaActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresPassword1">
+                <Component class="javax.swing.JTextField" name="__alumnosPassword">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresPassword1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosPasswordActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresHorasInvestigacion1">
+                <Component class="javax.swing.JTextField" name="__alumnosCorreo">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresHorasInvestigacion1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosCorreoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresSueldo1">
+                <Component class="javax.swing.JTextField" name="__alumnosTelefono">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresSueldo1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosTelefonoActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -450,7 +462,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Horas de investigaci&#xf3;n:"/>
+                    <Property name="text" type="java.lang.String" value="Correo electronico:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
@@ -458,22 +470,8 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Sueldo:"/>
+                    <Property name="text" type="java.lang.String" value="Telefono:"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="__profesoresTipo1">
-                  <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="Titular"/>
-                        <StringItem index="1" value="Asociado"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel29">
                   <Properties>
@@ -483,40 +481,40 @@
                     <Property name="text" type="java.lang.String" value="Buscador (id):"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="__profesoresBuscador1">
+                <Component class="javax.swing.JTextField" name="__alumnosBuscador">
                   <Properties>
                     <Property name="autoscrolls" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__profesoresBuscador1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosBuscadorActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="__BUSCAR_PROFESOR1">
+                <Component class="javax.swing.JButton" name="__BUSCAR_ALUMNO">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__BUSCAR_PROFESOR1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__BUSCAR_ALUMNOActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JButton" name="__AGREGAR_PROFESOR1">
+                <Component class="javax.swing.JButton" name="__AGREGAR_ALUMNO">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__AGREGAR_PROFESOR1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__AGREGAR_ALUMNOActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="__profesoresDepartamento1">
+                <Component class="javax.swing.JComboBox" name="__alumnosCurso">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
@@ -531,6 +529,60 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel30">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Usuario:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="__alumnosUsuario">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosUsuarioActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="__MATRICULAR_EN_CURSO">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Matricular"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__MATRICULAR_EN_CURSOActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JButton" name="__DESMATRICULAR_DE_CURSO">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Desmatricular"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__DESMATRICULAR_DE_CURSOActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JTextField" name="__alumnosidAlumno">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="__alumnosidAlumnoActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel15">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="ID:"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -733,7 +785,7 @@
                               <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="__cursosProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <EmptySpace pref="87" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="__MOSTRAR_CURSOS" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
                               <Component id="__ELIMINAR_CURSO" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
@@ -1473,7 +1525,7 @@
                           <Component id="__DEPARTAMENTOS_DESPLEGABLE" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane2" pref="343" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="372" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
