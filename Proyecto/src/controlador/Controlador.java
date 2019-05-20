@@ -21,6 +21,7 @@ import vista.Interfaz;
 
 public class Controlador implements ActionListener, MouseListener, ItemListener{
 	
+    String auxIdAlum;
 	 
 
     /* instancia a nuestra interfaz de usuario*/
@@ -170,6 +171,10 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         this.vista.__alumnosCurso.addItemListener(this);
         this.vista.__alumnosCurso.setModel( new DefaultComboBoxModel() );
         this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__alumnosCursosMatriculados.addItemListener(this);
+        this.vista.__alumnosCurso.setModel( new DefaultComboBoxModel() );
+        this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCursoAlumno(auxIdAlum) );
         
     }
     @Override
@@ -201,6 +206,7 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
              int filaa = this.vista.__tabla_alumnos.rowAtPoint(e.getPoint());
              if (filaa > -1){                
                 this.vista.__alumnosBuscador.setText( String.valueOf( this.vista.__tabla_alumnos.getValueAt(filaa, 1) ));
+                auxIdAlum = (String) this.vista.__tabla_alumnos.getValueAt(filaa, 1);
              }
         }
     }
@@ -331,6 +337,10 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
             //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
                 this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral() );
             break;
+            case __BUSCAR_ALUMNO:
+            //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
+                this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getTablaAlumnosPersonal(this.vista.__alumnosBuscador.getText()) );
+            break;
                 case __ELIMINAR_ALUMNO:
             if ( this.modeloAlumno.EliminarAlumno( this.vista.__alumnosBuscador.getText() ) )
                 {
@@ -338,9 +348,38 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                     JOptionPane.showMessageDialog(vista,"Exito: Alumno eliminado.");
                     this.vista.__alumnosBuscador.setText("");
                 }else{
-                JOptionPane.showMessageDialog(vista,"Fallo: Los datos son incorrectos.");
+                JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar alumnos con matriculas.");
             }
 		break;
+                case __AGREGAR_ALUMNO:
+                //añade un nuevo registro
+                
+                if ( this.modeloAlumno.nuevoAlumno(
+                        this.vista.__alumnosnombreAlumno.getText(),
+                        this.vista.__alumnosDireccion.getText() ,
+                        this.vista.__alumnosCorreo.getText(),
+                        this.vista.__alumnosTelefono.getText() ,
+                        this.vista.__alumnosMatricula.getText(),
+                        this.vista.__alumnosCreditosActuales.getText() ,
+                        this.vista.__alumnosidAlumno.getText(),
+                        this.vista.__alumnosUsuario.getText(),
+                        this.vista.__alumnosPassword.getText() ) )
+                {
+                    this.vista.__tabla_profesores.setModel( this.modeloProfesor.getTablaProfesoresGeneral() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
+                    this.vista.__alumnosnombreAlumno.setText("");
+                        this.vista.__alumnosDireccion.setText("") ;
+                        this.vista.__alumnosCorreo.setText("");
+                        this.vista.__alumnosTelefono.setText("") ;
+                        this.vista.__alumnosMatricula.setText("");
+                        this.vista.__alumnosCreditosActuales.setText("") ;
+                        this.vista.__alumnosidAlumno.getText();
+                        this.vista.__alumnosUsuario.setText("");
+                        this.vista.__alumnosPassword.setText("");
+                        this.vista.__profesoresPassword.setText("");
+                }else //ocurrio un error
+                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                break;
                 
                 
                 

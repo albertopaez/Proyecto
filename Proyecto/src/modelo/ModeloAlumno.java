@@ -54,28 +54,28 @@ public class ModeloAlumno extends Database{
         return tablemodel;
     }
     
-    public DefaultTableModel getTablaAlumnosPersonal(String idProfesor)
+    public DefaultTableModel getTablaAlumnosPersonal(String idAlumno)
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0;
-      String[] columNames = {"Nombre", "Departamento", "Tipo", "Tutorias", "Horas de Investigación", "Sueldo",
+      String[] columNames = {"Nombre", "Dirección", "Correo", "Telefono", "Matricula", "Creditos",
           "ID", "Usuario", "Contraseña"};
       
     //se crea una matriz con tantas filas y columnas que necesite
     Object[][] data = new String[1][9];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT * FROM Profesores WHERE idProfesor='"+idProfesor+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT * FROM Alumnos WHERE idAlumno='"+idAlumno+"'");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
-                data[i][0] = res.getString( "nombreProfesor" );
-                data[i][1] = res.getString( "nombreDepartamento" );
-                data[i][2] = res.getString( "tipoProfesor" );
-                data[i][3] = res.getString( "tutorias" );
-                data[i][4] = res.getString( "horasInvestigacion" );
-                data[i][5] = res.getString("sueldo" );
-                data[i][6] = res.getString( "idProfesor" );
+                data[i][0] = res.getString( "nombreAlumno" );
+                data[i][1] = res.getString( "direccion" );
+                data[i][2] = res.getString( "correoElectronico" );
+                data[i][3] = res.getString( "telefono" );
+                data[i][4] = res.getString( "matricula" );
+                data[i][5] = res.getString("creditoActual" );
+                data[i][6] = res.getString( "idAlumno" );
                 data[i][7] = res.getString( "usuario" );
                 data[i][8] = res.getString( "contrasena" );
             i++;
@@ -107,6 +107,53 @@ public class ModeloAlumno extends Database{
             System.err.println( e.getMessage() );
         }
         return res;
+    }
+    
+    public boolean nuevoAlumno(String nombreAlumno, String direccion , String correoElectronico,
+            String telefono, String matricula,String creditoActual, String idAlumno,
+            String usuario, String contrasena)     
+    {
+        if( valida_datos( nombreAlumno,  direccion ,  correoElectronico,
+             telefono,  matricula, creditoActual,  idAlumno,
+             usuario,  contrasena)  )
+        {
+            
+            //se reemplaza "," por "."
+            matricula = matricula.replace(",", ".");
+            matricula = matricula.replace("'", ".");
+            //Se arma la consulta
+            String q=" INSERT INTO Alumnos ( nombreAlumno,  direccion ,  correoElectronico, "
+                    + "telefono,  matricula, creditoActual,  idAlumno, usuario,  contrasena  ) "
+                    + "VALUES ( '" + nombreAlumno + "','" + direccion + "', '" +
+                    correoElectronico + "'," + telefono + "," + matricula + "," +
+                    creditoActual + ", '" + idAlumno + "','" + usuario + "','" + contrasena +"' ) ";
+            
+            
+            
+            //se ejecuta la consulta
+            try {
+                PreparedStatement pstm = this.getConexion().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println( e.getMessage() );
+            }
+            return false;
+        }
+        else
+         return false;
+    }
+    
+    private boolean valida_datos(String nombreAlumno, String direccion , String correoElectronico,
+            String telefono, String matricula, String creditoActual, String idAlumno,
+            String usuario, String contrasena){
+        
+        if( nombreAlumno.equals("") || direccion.equals("") || correoElectronico.equals("") || telefono.equals("")
+                 || matricula.equals("") || creditoActual.equals("") || idAlumno.equals("")
+                || usuario.equals("") || contrasena.equals("")){
+            return false;
+        }else return true;
     }
     
 }

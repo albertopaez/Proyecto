@@ -160,6 +160,32 @@ public class ModeloCurso extends Database {
 			return new DefaultComboBoxModel(elementos.toArray());    
     }
     
+    public DefaultComboBoxModel getListaCursoAlumno(String id){
+      String nombre;
+      DefaultComboBoxModel ahh = new DefaultComboBoxModel();
+			// plantilla=new DefaultTableModel(null,headers);
+			// tabla.setModel(plantilla);
+
+			ArrayList<String> elementos=new ArrayList<String>();
+			try {
+				this.getConexion();
+				PreparedStatement pstm = this.getConexion().prepareStatement(
+                                        "SELECT C.nombreCurso FROM Cursos C JOIN CursosAlumnos CA ON"
+                                                + " CA.idAlumno='"+id+"'");
+				ResultSet res = pstm.executeQuery();
+				while (res.next()) {
+					nombre = res.getString("nombreCurso");
+
+					elementos.add(nombre);
+				}
+				//plantilla=new DefaultComboBoxModel(items);
+				pstm.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return new DefaultComboBoxModel(elementos.toArray());    
+    }
+    
     
     
     
