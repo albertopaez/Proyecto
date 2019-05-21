@@ -50,8 +50,7 @@ public class ModeloDepartamento extends Database {
         if( valida_datos(nombreDepartamento)  )
         {
             //Se arma la consulta
-            String q=" INSERT INTO Departamentos ( nombreDepartamento  ) "
-                    + "VALUES ( '" + nombreDepartamento + "' )";
+            String q="CALL nuevoDepartamento ( '" + nombreDepartamento + "' )";
             //se ejecuta la consulta
             try {
                 PreparedStatement pstm = this.getConexion().prepareStatement(q);
@@ -83,7 +82,7 @@ public class ModeloDepartamento extends Database {
       //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
       //para formar la matriz de datos
       try{
-         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Profesores WHERE nombreDepartamento='"+departamento+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement( "CALL getTablaDepartamentoProfesores1 ('"+departamento+"')");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
@@ -96,7 +95,7 @@ public class ModeloDepartamento extends Database {
     Object[][] data = new String[registros][5];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreProfesor FROM Profesores WHERE nombreDepartamento='"+departamento+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement("CALL getTablaDepartamentoProfesores2 ('"+departamento+"')");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
@@ -154,7 +153,7 @@ public class ModeloDepartamento extends Database {
     {
          boolean res=false;
         //se arma la consulta
-        String q = " DELETE FROM Departamentos WHERE  nombreDepartamento='" + id + "' " ;
+        String q = "CALL eliminarDepartamento ( '" + id + "' )" ;
         //se ejecuta la consulta
          try {
             PreparedStatement pstm = this.getConexion().prepareStatement(q);
