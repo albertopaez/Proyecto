@@ -1,0 +1,4 @@
+apaez_ProyectoGrupo
+apaez_alberto
+Salesianas1**
+jdbc:mysql://apaez.salesianas.es/

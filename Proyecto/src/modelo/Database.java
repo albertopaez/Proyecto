@@ -1,28 +1,36 @@
 package modelo;
 
 import java.sql.*;
+import java.util.List;
+import static modelo.ManejaArchivos.manejaArchivos;
 /**
 
  * @author Mouse
  */
 
 public class Database {
+    
+    private static final String NOMBRE_ARCHIVO = "DatabaseVariables.txt";
+    
+    List<String> lista = manejaArchivos(NOMBRE_ARCHIVO);
+    
+    
 
 	/* DATOS PARA LA CONEXION */
 	  /** base de datos por defecto es test*/
-	  private String db = "apaez_ProyectoGrupo";
+	  private String db = lista.get(0);
 	  /** usuario */
-	  private String user = "apaez_alberto";
+	  private String user = lista.get(1);
 	  /** contrase�a de MySql*/
-	  private String password = "Salesianas1**";
+	  private String password = lista.get(2);
 	  /** Cadena de conexion */
-	  private String url = "jdbc:mysql://apaez.salesianas.es/"+db;
+	  private String url = lista.get(3)+db;
 	  /** variable para trabajar con la conexion a la base de datos */
 	  private Connection conn = null;
 
 	   /** Constructor de clase */
 	   public Database(){
-	        this.url = "jdbc:mysql://apaez.salesianas.es/"+this.db;
+               
 	       try{
 	         //obtenemos el driver de para mysql
 	         Class.forName("com.mysql.jdbc.Driver");
