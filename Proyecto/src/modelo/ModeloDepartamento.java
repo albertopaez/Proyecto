@@ -119,7 +119,8 @@ public class ModeloDepartamento extends Database {
       //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
       //para formar la matriz de datos
       try{
-         PreparedStatement pstm = this.getConexion().prepareStatement( "SELECT count(*) as total FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement( 
+                 "CALL getTablaDepartamentoCursos ('"+departamento+"')");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");

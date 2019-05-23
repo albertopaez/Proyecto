@@ -23,7 +23,7 @@ public class ModeloCurso extends Database {
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0;
-      String[] columNames = {"Nombre","Tipo","Profesor","Creditos", "Precio", "Horas"};
+      String[] columNames = {"Nombre","Tipo","Profesor (ID)","Creditos", "Precio", "Horas"};
       //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
       //para formar la matriz de datos
       try{
@@ -45,25 +45,11 @@ public class ModeloCurso extends Database {
          int i=0;
          while(res.next()){
                 data[i][0] = res.getString( "nombreCurso" );
+                data[i][2] = res.getString( "idProfesor" );
                 data[i][1] = res.getString( "tipoCurso" );
                 data[i][3] = res.getString( "creditos" );
                 data[i][4] = res.getString( "precio" );
                 data[i][5] = res.getString( "horas" );
-            i++;
-         }
-         res.close();
-         }catch(SQLException e){
-            System.err.println( e.getMessage() );
-        }
-      try{
-          //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement
-        ("SELECT P.nombreProfesor FROM Profesores P JOIN Cursos C ON P.idProfesor=C.idProfesor");
-         ResultSet res = pstm.executeQuery();
-        
-         int i=0;
-         while(res.next()){
-                data[i][2] = res.getString( "nombreProfesor" );
             i++;
          }
          res.close();
@@ -161,7 +147,6 @@ public class ModeloCurso extends Database {
     }
     
     public DefaultComboBoxModel getListaCursoAlumno(String id){
-      String nombre;
       DefaultComboBoxModel ahh = new DefaultComboBoxModel();
 			// plantilla=new DefaultTableModel(null,headers);
 			// tabla.setModel(plantilla);
@@ -170,13 +155,10 @@ public class ModeloCurso extends Database {
 			try {
 				this.getConexion();
 				PreparedStatement pstm = this.getConexion().prepareStatement(
-                                        "SELECT C.nombreCurso FROM Cursos C JOIN CursosAlumnos CA ON"
-                                                + " CA.idAlumno='"+id+"'");
+                                        "SELECT nombreCurso FROM CursosAlumnos WHERE idAlumno='"+id+"'");
 				ResultSet res = pstm.executeQuery();
 				while (res.next()) {
-					nombre = res.getString("nombreCurso");
-
-					elementos.add(nombre);
+					elementos.add(res.getString("nombreCurso"));
 				}
 				//plantilla=new DefaultComboBoxModel(items);
 				pstm.close();
@@ -187,7 +169,39 @@ public class ModeloCurso extends Database {
     }
     
     
-    
+    public boolean modificarCurso(String nombreCurso, String tipoCurso , String idProfesor,
+            String creditos,String horas, String precio)     
+    {
+        if( valida_datos( nombreCurso,  tipoCurso ,  idProfesor,  creditos, horas,  precio)  )
+        {
+            if(tipoCurso=="Completo"){
+            horas = "0";
+            precio = "0";
+        }else{creditos="0";}
+            //se reemplaza "," por "."
+            precio = precio.replace(",", ".");
+            precio = precio.replace("'", ".");
+            //Se arma la consulta
+            String q=" UPDATE Cursos SET nombreCurso='" + nombreCurso + "', tipoCurso='"
+                    + tipoCurso + "', idProfesor='" +idProfesor + "', creditos=" + creditos +
+                    ", horas=" + horas + ", precio=" + precio +" WHERE nombreCurso='"+nombreCurso+"'";
+            
+            
+            
+            //se ejecuta la consulta
+            try {
+                PreparedStatement pstm = this.getConexion().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println( e.getMessage() );
+            }
+            return false;
+        }
+        else
+         return false;
+    }
     
 
 }

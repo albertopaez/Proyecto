@@ -23,7 +23,8 @@ public class ModeloProfesor extends Database {
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
       int registros = 0;
-      String[] columNames = {"Nombre", "ID"};
+      String[] columNames = {"Nombre", "Departamento", "Tipo", "Tutorias", "Horas de Investigación", "Sueldo",
+          "ID", "Usuario", "Contraseña"};
       //obtenemos la cantidad de registros existentes en la tabla y se almacena en la variable "registros"
       //para formar la matriz de datos
       try{
@@ -37,15 +38,22 @@ public class ModeloProfesor extends Database {
          System.err.println( e.getMessage() );
       }
     //se crea una matriz con tantas filas y columnas que necesite
-    Object[][] data = new String[registros][2];
+    Object[][] data = new String[registros][9];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT nombreProfesor, idProfesor FROM Profesores");
+         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT * FROM Profesores");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
                 data[i][0] = res.getString( "nombreProfesor" );
-                data[i][1] = res.getString( "idProfesor" );
+                data[i][1] = res.getString( "nombreDepartamento" );
+                data[i][2] = res.getString( "tipoProfesor" );
+                data[i][3] = res.getString( "tutorias" );
+                data[i][4] = res.getString( "horasInvestigacion" );
+                data[i][5] = res.getString("sueldo" );
+                data[i][6] = res.getString( "idProfesor" );
+                data[i][7] = res.getString( "usuario" );
+                data[i][8] = res.getString( "contrasena" );
             i++;
          }
          res.close();
@@ -68,7 +76,7 @@ public class ModeloProfesor extends Database {
     Object[][] data = new String[1][9];
       try{
           //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("SELECT * FROM Profesores WHERE idProfesor='"+idProfesor+"'");
+         PreparedStatement pstm = this.getConexion().prepareStatement("CALL getTablaProfesorPersonal ('"+idProfesor+"')");
          ResultSet res = pstm.executeQuery();
          int i=0;
          while(res.next()){
@@ -97,7 +105,7 @@ public class ModeloProfesor extends Database {
     {
          boolean res=false;
         //se arma la consulta
-        String q = " DELETE FROM Profesores WHERE  idProfesor='" + id + "' " ;
+        String q = "CALL EliminarProfesor ('"+id+"')" ;
         //se ejecuta la consulta
          try {
             PreparedStatement pstm = this.getConexion().prepareStatement(q);
@@ -181,6 +189,36 @@ public class ModeloProfesor extends Database {
 				e.printStackTrace();
 			}
 			return new DefaultComboBoxModel(elementos.toArray());    
+    }
+    
+    /** Registra un nuevo producto */
+    public boolean modificaProfesor(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
+            String tutorias, String horasInvestigacion,String sueldo, String idProfesor, String usuario, String contrasena)     
+    {
+            if(tipoProfesor=="Asociado"){
+            horasInvestigacion = "0";
+        }
+            //se reemplaza "," por "."
+            sueldo = sueldo.replace(",", ".");
+            sueldo = sueldo.replace("'", ".");
+            //Se arma la consulta
+            String q=" UPDATE Profesores SET nombreProfesor='" + nombreProfesor + "', nombreDepartamento='"
+                    + nombreDepartamento + "', tipoProfesor='" +tipoProfesor + "', tutorias='" + tutorias +
+                    "', horasInvestigacion=" + horasInvestigacion + ", sueldo=" + sueldo + ", usuario='" + usuario + 
+                    "', contrasena='" + contrasena +"' WHERE idProfesor='"+idProfesor+"'";
+            
+            
+            
+            //se ejecuta la consulta
+            try {
+                PreparedStatement pstm = this.getConexion().prepareStatement(q);
+                pstm.execute();
+                pstm.close();
+                return true;
+            }catch(SQLException e){
+                System.err.println( e.getMessage() );
+            }
+            return false;
     }
 
 }

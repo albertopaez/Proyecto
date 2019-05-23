@@ -14,14 +14,13 @@ import modelo.ModeloDepartamento;
 import modelo.ModeloProfesor;
 import modelo.ModeloCurso;
 import modelo.ModeloAlumno;
+import modelo.ModeloAlumnoCurso;
 import vista.Interfaz;
 /**
  * @author Alberto
  */
 
 public class Controlador implements ActionListener, MouseListener, ItemListener{
-	
-    String auxIdAlum;
 	 
 
     /* instancia a nuestra interfaz de usuario*/
@@ -31,6 +30,7 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
     ModeloProfesor modeloProfesor = new ModeloProfesor();
     ModeloCurso modeloCurso = new ModeloCurso();
     ModeloAlumno modeloAlumno = new ModeloAlumno();
+    ModeloAlumnoCurso modeloAlumnoCurso = new ModeloAlumnoCurso();
 
     /** Se declaran en un ENUM las acciones que se realizan desde la
  interfaz de usuario VISTA y posterior ejecución desde el Controlador
@@ -43,16 +43,17 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         __AGREGAR_PROFESOR,
         __ELIMINAR_PROFESOR,
         __MOSTRAR_PROFESORES,
-        __BUSCAR_PROFESOR,
+        __MODIFICAR_PROFESOR,
         __MOSTRAR_CURSOS,
         __AGREGAR_CURSO,
         __ELIMINAR_CURSO,
-        __MOSTRAR_ALUMNOS,
-        __BUSCAR_ALUMNO,
+        __MODIFICAR_CURSO,
         __AGREGAR_ALUMNO,
         __ELIMINAR_ALUMNO,
         __MATRICULAR_EN_CURSO,
-        __DESMATRICULAR_DE_CURSO
+        __DESMATRICULAR_DE_CURSO,
+        __MODIFICAR_ALUMNO,
+        __MOSTRAR_ALUMNO
         
     }
 
@@ -93,8 +94,8 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         this.vista.__MOSTRAR_PROFESORES.setActionCommand( "__MOSTRAR_PROFESORES" );
         this.vista.__MOSTRAR_PROFESORES.addActionListener(this);
         //declara una acción y añade un escucha al evento producido por el componente
-        this.vista.__BUSCAR_PROFESOR.setActionCommand( "__BUSCAR_PROFESOR" );
-        this.vista.__BUSCAR_PROFESOR.addActionListener(this);
+        this.vista.__MODIFICAR_PROFESOR.setActionCommand( "__MODIFICAR_PROFESOR" );
+        this.vista.__MODIFICAR_PROFESOR.addActionListener(this);
         //declara una acción y añade un escucha al evento producido por el componente
         this.vista.__MOSTRAR_CURSOS.setActionCommand( "__MOSTRAR_CURSOS" );
         this.vista.__MOSTRAR_CURSOS.addActionListener(this);
@@ -105,11 +106,8 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         this.vista.__ELIMINAR_CURSO.setActionCommand( "__ELIMINAR_CURSO" );
         this.vista.__ELIMINAR_CURSO.addActionListener(this);
         //declara una acción y añade un escucha al evento producido por el componente
-        this.vista.__MOSTRAR_ALUMNOS.setActionCommand( "__MOSTRAR_ALUMNOS" );
-        this.vista.__MOSTRAR_ALUMNOS.addActionListener(this);
-        //declara una acción y añade un escucha al evento producido por el componente
-        this.vista.__BUSCAR_ALUMNO.setActionCommand( "__BUSCAR_ALUMNO" );
-        this.vista.__BUSCAR_ALUMNO.addActionListener(this);
+        this.vista.__MODIFICAR_ALUMNO.setActionCommand( "__MODIFICAR_ALUMNO" );
+        this.vista.__MODIFICAR_ALUMNO.addActionListener(this);
         //declara una acción y añade un escucha al evento producido por el componente
         this.vista.__AGREGAR_ALUMNO.setActionCommand( "__AGREGAR_ALUMNO" );
         this.vista.__AGREGAR_ALUMNO.addActionListener(this);
@@ -122,6 +120,14 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         //declara una acción y añade un escucha al evento producido por el componente
         this.vista.__DESMATRICULAR_DE_CURSO.setActionCommand( "__DESMATRICULAR_DE_CURSO" );
         this.vista.__DESMATRICULAR_DE_CURSO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__MODIFICAR_CURSO.setActionCommand( "__MODIFICAR_CURSO" );
+        this.vista.__MODIFICAR_CURSO.addActionListener(this);
+        //declara una acción y añade un escucha al evento producido por el componente
+        this.vista.__MOSTRAR_ALUMNO.setActionCommand( "__MOSTRAR_ALUMNO" );
+        this.vista.__MOSTRAR_ALUMNO.addActionListener(this);
+        
+        
         
         
         //añade e inicia el jtable con un DefaultTableModel vacio
@@ -143,25 +149,18 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         
         
         
-        
         //añade e inicia el comboBox de Departamento con una lista de los departamentos
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.addMouseListener(this);
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.addItemListener(this);
-        this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel( new DefaultComboBoxModel() );
         this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
         //añade e inicia un comboBox de Profesor con una lista de los departamentos
         this.vista.__profesoresDepartamento.addItemListener(this);
-        this.vista.__profesoresDepartamento.setModel( new DefaultComboBoxModel() );
         this.vista.__profesoresDepartamento.setModel(this.modeloDepartamento.getListaDepartamento() );
         //añade e inicia un comboBox de Profesor con los tipos de profesores
         this.vista.__profesoresTipo.addItemListener(this);
         this.vista.__profesoresTipo.setModel( new DefaultComboBoxModel() );
         this.vista.__profesoresTipo.addItem("Titular");
         this.vista.__profesoresTipo.addItem("Asociado");
-        //añade e inicia un comboBox de Curso con una lista de las id de profesores
-        this.vista.__cursosProfesor.addItemListener(this);
-        this.vista.__cursosProfesor.setModel( new DefaultComboBoxModel() );
-        this.vista.__cursosProfesor.setModel(this.modeloProfesor.getListaProfesor() );
         //añade e inicia un comboBox de Profesor con los tipos de cursos
         this.vista.__cursosTipo.addItemListener(this);
         this.vista.__cursosTipo.setModel( new DefaultComboBoxModel() );
@@ -169,12 +168,22 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         this.vista.__cursosTipo.addItem("De Verano");
         //añade e inicia un comboBox de Alumnos con una lista de los cursos
         this.vista.__alumnosCurso.addItemListener(this);
-        this.vista.__alumnosCurso.setModel( new DefaultComboBoxModel() );
         this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
         //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__alumnosAlumnos.addItemListener(this);
+        this.vista.__alumnosAlumnos.setModel(this.modeloAlumno.getListaAlumnos() );
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
         this.vista.__alumnosCursosMatriculados.addItemListener(this);
-        this.vista.__alumnosCurso.setModel( new DefaultComboBoxModel() );
-        this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCursoAlumno(auxIdAlum) );
+        this.vista.__alumnosCursosMatriculados.setModel(this.modeloCurso.getListaCursoAlumno(this.vista.__alumnosAlumnos.getSelectedItem().toString()) );
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__cursosProfesor.addItemListener(this);
+        this.vista.__cursosProfesor.setModel(this.modeloProfesor.getListaProfesor());
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__profesoresProfesores.addItemListener(this);
+        this.vista.__profesoresProfesores.setModel(this.modeloProfesor.getListaProfesor());
+        //añade e inicia un comboBox de Alumnos con una lista de los cursos
+        this.vista.__cursosCursos.addItemListener(this);
+        this.vista.__cursosCursos.setModel(this.modeloCurso.getListaCurso());
         
     }
     @Override
@@ -186,30 +195,15 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         this.vista.__tabla_departamentosCursos.setModel
         (this.modeloDepartamento.getTablaDepartamentoCursos
         (this.vista.__DEPARTAMENTOS_DESPLEGABLE.getSelectedItem().toString()) );
+        
+        this.vista.__alumnosCursosMatriculados.setModel(this.modeloCurso.getListaCursoAlumno(this.vista.__alumnosAlumnos.getSelectedItem().toString()) );
     }
     
    
 
     //Eventos que suceden por el mouse
     
-    public void mouseClicked(MouseEvent e) {
-        if( e.getButton()== 1)//boton izquierdo
-        {
-             int filap = this.vista.__tabla_profesores.rowAtPoint(e.getPoint());
-             if (filap > -1){                
-                this.vista.__profesoresBuscador.setText( String.valueOf( this.vista.__tabla_profesores.getValueAt(filap, 1) ));
-             }
-             int filac = this.vista.__tabla_cursos.rowAtPoint(e.getPoint());
-             if (filac > -1){                
-                this.vista.__cursosidCurso.setText( String.valueOf( this.vista.__tabla_cursos.getValueAt(filac, 0) ));
-             }
-             int filaa = this.vista.__tabla_alumnos.rowAtPoint(e.getPoint());
-             if (filaa > -1){                
-                this.vista.__alumnosBuscador.setText( String.valueOf( this.vista.__tabla_alumnos.getValueAt(filaa, 1) ));
-                auxIdAlum = (String) this.vista.__tabla_alumnos.getValueAt(filaa, 1);
-             }
-        }
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     public void mousePressed(MouseEvent e) {}
 
@@ -229,19 +223,20 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                 //añade un nuevo departamento
                 if ( this.modeloDepartamento.NuevoDepartamento(this.vista.__departamento.getText()) )
                 {
-                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
                     JOptionPane.showMessageDialog(vista,"Exito: Nuevo departamento agregado.");
                     this.vista.__departamento.setText("") ;
+                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
+                    this.vista.__profesoresDepartamento.setModel(this.modeloDepartamento.getListaDepartamento() );
                 }
                 else //ocurrio un error
                     JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
                 break;
 	case __ELIMINAR_DEPARTAMENTOS:
-            if ( this.modeloDepartamento.EliminarDepartamento( this.vista.__departamento.getText() ) )
+            if ( this.modeloDepartamento.EliminarDepartamento(this.vista.__DEPARTAMENTOS_DESPLEGABLE.getSelectedItem().toString()) )
                 {
-                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
                     JOptionPane.showMessageDialog(vista,"Exito: Departamento eliminado.");
-                    this.vista.__departamento.setText("");
+                    this.vista.__DEPARTAMENTOS_DESPLEGABLE.setModel(this.modeloDepartamento.getListaDepartamento() );
+                    this.vista.__profesoresDepartamento.setModel(this.modeloDepartamento.getListaDepartamento() );
                 }else{
                 JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar departamentos con profesores asociados.");
             }
@@ -253,23 +248,46 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
             //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
                 this.vista.__tabla_profesores.setModel(this.modeloProfesor.getTablaProfesoresGeneral() );
             break;
-            case __BUSCAR_PROFESOR:
-            //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
-                this.vista.__tabla_profesores.setModel(this.modeloProfesor.getTablaProfesorPersonal(this.vista.__profesoresBuscador.getText()) );
-            break;
+            case __MODIFICAR_PROFESOR:
+                //añade un nuevo registro
+                if ( this.modeloProfesor.modificaProfesor(
+                        this.vista.__profesoresNombre.getText(),
+                        this.vista.__profesoresDepartamento.getSelectedItem().toString() ,
+                        this.vista.__profesoresTipo.getSelectedItem().toString(),
+                        this.vista.__profesoresTutorias.getText() ,
+                        this.vista.__profesoresHorasInvestigacion.getText(),
+                        this.vista.__profesoresSueldo.getText() ,
+                        this.vista.__profesoresProfesores.getSelectedItem().toString(),
+                        this.vista.__profesoresUsuario.getText(),
+                        this.vista.__profesoresPassword.getText() ) )
+                {
+                    this.vista.__tabla_profesores.setModel( this.modeloProfesor.getTablaProfesoresGeneral() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
+                    this.vista.__profesoresProfesores.setModel(this.modeloProfesor.getListaProfesor());
+                    this.vista.__cursosProfesor.setModel(this.modeloProfesor.getListaProfesor());
+                    this.vista.__profesoresNombre.setText("");
+                        this.vista.__profesoresTutorias.setText("") ;
+                        this.vista.__profesoresHorasInvestigacion.setText("");
+                        this.vista.__profesoresSueldo.setText("") ;
+                        this.vista.__profesoresidProfesor.setText("");
+                        this.vista.__profesoresUsuario.setText("");
+                        this.vista.__profesoresPassword.setText("");
+                }else //ocurrio un error
+                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                break;
             case __ELIMINAR_PROFESOR:
-            if ( this.modeloProfesor.EliminarProfesor( this.vista.__profesoresBuscador.getText() ) )
+            if ( this.modeloProfesor.EliminarProfesor(this.vista.__profesoresProfesores.getSelectedItem().toString()) )
                 {
                     this.vista.__tabla_profesores.setModel(this.modeloProfesor.getTablaProfesoresGeneral() );
                     JOptionPane.showMessageDialog(vista,"Exito: Profesor eliminado.");
-                    this.vista.__profesoresBuscador.setText("");
+                    this.vista.__profesoresProfesores.setModel(this.modeloProfesor.getListaProfesor());
+                    this.vista.__cursosProfesor.setModel(this.modeloProfesor.getListaProfesor());
                 }else{
                 JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar profesores con cursos asociados.");
             }
 		break;
             case __AGREGAR_PROFESOR:
                 //añade un nuevo registro
-                
                 if ( this.modeloProfesor.nuevoProfesor(
                         this.vista.__profesoresNombre.getText(),
                         this.vista.__profesoresDepartamento.getSelectedItem().toString() ,
@@ -283,13 +301,15 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                 {
                     this.vista.__tabla_profesores.setModel( this.modeloProfesor.getTablaProfesoresGeneral() );
                     JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
+                    this.vista.__profesoresProfesores.setModel(this.modeloProfesor.getListaProfesor());
+                    this.vista.__cursosProfesor.setModel(this.modeloProfesor.getListaProfesor());
                     this.vista.__profesoresNombre.setText("");
-                        this.vista.__profesoresTutorias.setText("") ;
-                        this.vista.__profesoresHorasInvestigacion.setText("");
-                        this.vista.__profesoresSueldo.setText("") ;
-                        this.vista.__profesoresidProfesor.setText("");
-                        this.vista.__profesoresUsuario.setText("");
-                        this.vista.__profesoresPassword.setText("");
+                    this.vista.__profesoresTutorias.setText("") ;
+                    this.vista.__profesoresHorasInvestigacion.setText("");
+                    this.vista.__profesoresSueldo.setText("") ;
+                    this.vista.__profesoresidProfesor.setText("");
+                    this.vista.__profesoresUsuario.setText("");
+                    this.vista.__profesoresPassword.setText("");
                 }else //ocurrio un error
                     JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
                 break;
@@ -301,11 +321,12 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                 this.vista.__tabla_cursos.setModel(this.modeloCurso.getTablaCursos() );
             break;
             case __ELIMINAR_CURSO:
-            if ( this.modeloCurso.EliminarCurso( this.vista.__cursosidCurso.getText() ) )
+            if ( this.modeloCurso.EliminarCurso( this.vista.__cursosCursos.getSelectedItem().toString() ) )
                 {
                     this.vista.__tabla_cursos.setModel(this.modeloCurso.getTablaCursos() );
                     JOptionPane.showMessageDialog(vista,"Exito: Curso eliminado.");
-                    this.vista.__profesoresBuscador.setText("");
+                    this.vista.__cursosCursos.setModel(this.modeloCurso.getListaCurso());
+                    this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
                 }else{
                 JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar cursos con alumnos asociados.");
             }
@@ -322,6 +343,29 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                 {
                     this.vista.__tabla_cursos.setModel( this.modeloCurso.getTablaCursos() );
                     JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
+                    this.vista.__cursosCursos.setModel(this.modeloCurso.getListaCurso());
+                    this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
+                        this.vista.__cursosidCurso.setText("");
+                        this.vista.__cursosCreditos.setText("");
+                        this.vista.__cursosHoras.setText("") ;
+                        this.vista.__cursosPrecio.setText("");
+                }else //ocurrio un error
+                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                break;
+            case __MODIFICAR_CURSO:
+                //añade un nuevo registro
+                if ( this.modeloCurso.modificarCurso(
+                        this.vista.__cursosCursos.getSelectedItem().toString(),
+                        this.vista.__cursosTipo.getSelectedItem().toString() ,
+                        this.vista.__cursosProfesor.getSelectedItem().toString(),
+                        this.vista.__cursosCreditos.getText(),
+                        this.vista.__cursosHoras.getText() ,
+                        this.vista.__cursosPrecio.getText()) )
+                {
+                    this.vista.__tabla_cursos.setModel( this.modeloCurso.getTablaCursos() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Curso modificado.");
+                    this.vista.__cursosCursos.setModel(this.modeloCurso.getListaCurso());
+                    this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
                         this.vista.__cursosidCurso.setText("");
                         this.vista.__cursosCreditos.setText("");
                         this.vista.__cursosHoras.setText("") ;
@@ -333,27 +377,39 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                 
                 
                 
-                case __MOSTRAR_ALUMNOS:
-            //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
-                this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral() );
-            break;
-            case __BUSCAR_ALUMNO:
-            //obtiene del modeloProfesor los registros en un DefaultTableModel y lo asigna en la vista
-                this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getTablaAlumnosPersonal(this.vista.__alumnosBuscador.getText()) );
-            break;
-                case __ELIMINAR_ALUMNO:
-            if ( this.modeloAlumno.EliminarAlumno( this.vista.__alumnosBuscador.getText() ) )
+            case __MODIFICAR_ALUMNO:
+                if ( this.modeloAlumno.nuevoAlumno(
+                        this.vista.__alumnosnombreAlumno.getText(),
+                        this.vista.__alumnosDireccion.getText() ,
+                        this.vista.__alumnosCorreo.getText(),
+                        this.vista.__alumnosTelefono.getText() ,
+                        this.vista.__alumnosMatricula.getText(),
+                        this.vista.__alumnosCreditosActuales.getText() ,
+                        this.vista.__alumnosidAlumno.getText(),
+                        this.vista.__alumnosUsuario.getText(),
+                        this.vista.__alumnosPassword.getText() ) )
                 {
-                    this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral() );
-                    JOptionPane.showMessageDialog(vista,"Exito: Alumno eliminado.");
-                    this.vista.__alumnosBuscador.setText("");
-                }else{
-                JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar alumnos con matriculas.");
-            }
+                    this.vista.__tabla_profesores.setModel( this.modeloProfesor.getTablaProfesoresGeneral() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Alumno modificado.");
+                this.vista.__alumnosAlumnos.setModel(this.modeloAlumno.getListaAlumnos() );
+                    this.vista.__alumnosnombreAlumno.setText("");
+                        this.vista.__alumnosDireccion.setText("") ;
+                        this.vista.__alumnosCorreo.setText("");
+                        this.vista.__alumnosTelefono.setText("") ;
+                        this.vista.__alumnosMatricula.setText("");
+                        this.vista.__alumnosCreditosActuales.setText("") ;
+                        this.vista.__alumnosAlumnos.getSelectedItem().toString();
+                        this.vista.__alumnosUsuario.setText("");
+                        this.vista.__alumnosPassword.setText("");
+                        this.vista.__alumnosAlumnos.setModel(this.modeloAlumno.getListaAlumnos() );
+                }else //ocurrio un error
+                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
 		break;
+                
+                
+                
                 case __AGREGAR_ALUMNO:
                 //añade un nuevo registro
-                
                 if ( this.modeloAlumno.nuevoAlumno(
                         this.vista.__alumnosnombreAlumno.getText(),
                         this.vista.__alumnosDireccion.getText() ,
@@ -376,14 +432,48 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
                         this.vista.__alumnosidAlumno.getText();
                         this.vista.__alumnosUsuario.setText("");
                         this.vista.__alumnosPassword.setText("");
-                        this.vista.__profesoresPassword.setText("");
+                        this.vista.__alumnosAlumnos.setModel(this.modeloAlumno.getListaAlumnos() );
                 }else //ocurrio un error
                     JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
                 break;
                 
                 
                 
-                
+                case __DESMATRICULAR_DE_CURSO:
+            if ( this.modeloAlumnoCurso.EliminarAlumnoCurso(this.vista.__alumnosAlumnos.getSelectedItem().toString(),
+                    this.vista.__alumnosCursosMatriculados.getSelectedItem().toString()) )
+                {
+                    JOptionPane.showMessageDialog(vista,"Exito: Matricula eliminada.");
+                    this.vista.__alumnosCursosMatriculados.setModel(this.modeloCurso.getListaCursoAlumno(this.vista.__alumnosAlumnos.getSelectedItem().toString()) );
+
+                }else{
+                JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar alumnos con matriculas.");
+            }
+            break;
+                case __ELIMINAR_ALUMNO:
+                if ( this.modeloAlumno.EliminarAlumno(this.vista.__alumnosAlumnos.getSelectedItem().toString()) )
+                {
+                    JOptionPane.showMessageDialog(vista,"Exito: Alumno eliminado.");
+                    this.vista.__alumnosAlumnos.setModel(this.modeloAlumno.getListaAlumnos() );
+                }else{
+                JOptionPane.showMessageDialog(vista,"Fallo: No puede eliminar profesores con cursos asociados.");
+            }
+                break;
+                case __MATRICULAR_EN_CURSO:
+                if ( this.modeloAlumnoCurso.nuevoAlumnoCurso(this.vista.__alumnosAlumnos.getSelectedItem().toString(),
+                        this.vista.__alumnosCurso.getSelectedItem().toString()) )
+                {
+                    this.vista.__tabla_cursos.setModel( this.modeloCurso.getTablaCursos() );
+                    JOptionPane.showMessageDialog(vista,"Exito: Nuevo registro agregado.");
+                    this.vista.__alumnosCursosMatriculados.setModel(this.modeloCurso.getListaCursoAlumno(this.vista.__alumnosAlumnos.getSelectedItem().toString()) );
+                    this.vista.__cursosCursos.setModel(this.modeloCurso.getListaCurso());
+                    this.vista.__alumnosCurso.setModel(this.modeloCurso.getListaCurso() );
+                }else //ocurrio un error
+                    JOptionPane.showMessageDialog(vista,"Error: Los datos son incorrectos.");
+                break;
+                case __MOSTRAR_ALUMNO:
+                this.vista.__tabla_alumnos.setModel(this.modeloAlumno.getAlumnosGeneral());
+                break;
 	default:
 		break;
          
