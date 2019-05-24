@@ -44,6 +44,7 @@ public class ModeloDepartamento extends Database {
 			return new DefaultComboBoxModel(elementos.toArray());    
     }
     
+    //Crea un nuevo registro en la tabla Departamentos
     public boolean NuevoDepartamento(String nombreDepartamento)
     {
         
@@ -66,14 +67,14 @@ public class ModeloDepartamento extends Database {
          return false;
     }
     
-    
+    //Metodo auxiliar para validara los datos de entrada
     private boolean valida_datos(String nombreDepartamento){
         if( nombreDepartamento.equals("") ){
             return false;
         }else return true;
     }
     
-    
+    //Obtiene las id de los profesores asociados a un departamento
     public DefaultTableModel getTablaDepartamentoProfesores(String departamento)
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
@@ -111,6 +112,7 @@ public class ModeloDepartamento extends Database {
         return tablemodel;
     }
     
+    //Obtiene las id de los cursos asociados a un departamento
     public DefaultTableModel getTablaDepartamentoCursos(String departamento)
     {
       DefaultTableModel tablemodel = new DefaultTableModel();

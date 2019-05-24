@@ -10,7 +10,7 @@ import static modelo.ManejaArchivos.manejaArchivos;
 
 public class Database {
     
-    private static final String NOMBRE_ARCHIVO = "DatabaseVariables.txt";
+    private static final String NOMBRE_ARCHIVO = "/DatabaseVariables.txt";
     
     List<String> lista = manejaArchivos(NOMBRE_ARCHIVO);
     

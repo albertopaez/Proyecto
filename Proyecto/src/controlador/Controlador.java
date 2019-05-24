@@ -35,6 +35,7 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
     /** Se declaran en un ENUM las acciones que se realizan desde la
  interfaz de usuario VISTA y posterior ejecución desde el Controlador
      */
+    
     public enum AccionMVC
     {
         __AGREGAR_DEPARTAMENTOS,
@@ -54,7 +55,7 @@ public class Controlador implements ActionListener, MouseListener, ItemListener{
         __DESMATRICULAR_DE_CURSO,
         __MODIFICAR_ALUMNO,
         __MOSTRAR_ALUMNO
-        
+       
     }
 
     /** Constrcutor de clase

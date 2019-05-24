@@ -36,11 +36,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         __alumnosnombreAlumno = new javax.swing.JTextField();
         __alumnosDireccion = new javax.swing.JTextField();
-        __alumnosCreditosActuales = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        __alumnosMatricula = new javax.swing.JTextField();
         __alumnosPassword = new javax.swing.JTextField();
         __alumnosCorreo = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -57,6 +55,8 @@ public class Interfaz extends javax.swing.JFrame {
         __alumnosTelefono = new javax.swing.JFormattedTextField();
         jLabel25 = new javax.swing.JLabel();
         __alumnosCursosMatriculados = new javax.swing.JComboBox<>();
+        __alumnosMatricula = new javax.swing.JFormattedTextField();
+        __alumnosCreditosActuales = new javax.swing.JFormattedTextField();
         jScrollPane6 = new javax.swing.JScrollPane();
         __tabla_alumnos = new javax.swing.JTable();
         __alumnosAlumnos = new javax.swing.JComboBox<>();
@@ -69,15 +69,15 @@ public class Interfaz extends javax.swing.JFrame {
         __cursosidCurso = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        __cursosCreditos = new javax.swing.JTextField();
-        __cursosHoras = new javax.swing.JTextField();
-        __cursosPrecio = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         __cursosTipo = new javax.swing.JComboBox<>();
         __AGREGAR_CURSO = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         __cursosProfesor = new javax.swing.JComboBox<>();
+        __cursosPrecio = new javax.swing.JFormattedTextField();
+        __cursosCreditos = new javax.swing.JFormattedTextField();
+        __cursosHoras = new javax.swing.JFormattedTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         __tabla_cursos = new javax.swing.JTable();
         __cursosCursos = new javax.swing.JComboBox<>();
@@ -100,13 +100,13 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         __profesoresTutorias = new javax.swing.JTextField();
         __profesoresPassword = new javax.swing.JTextField();
-        __profesoresHorasInvestigacion = new javax.swing.JTextField();
-        __profesoresSueldo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         __profesoresTipo = new javax.swing.JComboBox<>();
         __AGREGAR_PROFESOR = new javax.swing.JButton();
         __profesoresDepartamento = new javax.swing.JComboBox<>();
+        __profesoresSueldo = new javax.swing.JFormattedTextField();
+        __profesoresHorasInvestigacion = new javax.swing.JFormattedTextField();
         __profesoresProfesores = new javax.swing.JComboBox<>();
         __ELIMINAR_PROFESOR = new javax.swing.JButton();
         __MODIFICAR_PROFESOR = new javax.swing.JButton();
@@ -147,12 +147,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        __alumnosCreditosActuales.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __alumnosCreditosActualesActionPerformed(evt);
-            }
-        });
-
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setText("Creditos:");
 
@@ -161,12 +155,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel26.setText("Contraseña:");
-
-        __alumnosMatricula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __alumnosMatriculaActionPerformed(evt);
-            }
-        });
 
         __alumnosPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -245,6 +233,10 @@ public class Interfaz extends javax.swing.JFrame {
 
         __alumnosCursosMatriculados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        __alumnosMatricula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.##"))));
+
+        __alumnosCreditosActuales.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -262,13 +254,13 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(__alumnosDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
-                            .addComponent(jLabel30)
-                            .addGap(8, 8, 8)
-                            .addComponent(__alumnosUsuario))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
                             .addComponent(jLabel24)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(__alumnosMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(__alumnosMatricula))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel13Layout.createSequentialGroup()
+                            .addComponent(jLabel30)
+                            .addGap(8, 8, 8)
+                            .addComponent(__alumnosUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
@@ -309,7 +301,7 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(__alumnosCursosMatriculados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(__DESMATRICULAR_DE_CURSO, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,10 +319,10 @@ public class Interfaz extends javax.swing.JFrame {
                     .addComponent(__alumnosTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(__alumnosCreditosActuales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
                     .addComponent(jLabel24)
-                    .addComponent(__alumnosMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(__alumnosMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(__alumnosCreditosActuales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
@@ -433,24 +425,6 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setText("Tipo:");
 
-        __cursosCreditos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __cursosCreditosActionPerformed(evt);
-            }
-        });
-
-        __cursosHoras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __cursosHorasActionPerformed(evt);
-            }
-        });
-
-        __cursosPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __cursosPrecioActionPerformed(evt);
-            }
-        });
-
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setText("Horas:");
 
@@ -471,6 +445,12 @@ public class Interfaz extends javax.swing.JFrame {
 
         __cursosProfesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titular", "Asociado" }));
 
+        __cursosPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.##"))));
+
+        __cursosCreditos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        __cursosHoras.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -478,7 +458,7 @@ public class Interfaz extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -486,17 +466,17 @@ public class Interfaz extends javax.swing.JFrame {
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(__cursosCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(__cursosCreditos)))
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(__cursosHoras))
+                                .addComponent(__cursosHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel11Layout.createSequentialGroup()
                                 .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(__cursosPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(__cursosPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(__MOSTRAR_CURSOS, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -522,8 +502,8 @@ public class Interfaz extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(__cursosPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
+                    .addComponent(__cursosPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(__cursosCreditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -666,18 +646,6 @@ public class Interfaz extends javax.swing.JFrame {
             }
         });
 
-        __profesoresHorasInvestigacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __profesoresHorasInvestigacionActionPerformed(evt);
-            }
-        });
-
-        __profesoresSueldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                __profesoresSueldoActionPerformed(evt);
-            }
-        });
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Horas de investigación:");
 
@@ -694,6 +662,10 @@ public class Interfaz extends javax.swing.JFrame {
         });
 
         __profesoresDepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        __profesoresSueldo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.##"))));
+
+        __profesoresHorasInvestigacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -726,18 +698,18 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(__profesoresHorasInvestigacion))
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(__profesoresSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(__profesoresUsuario))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel10Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(__profesoresPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(__profesoresSueldo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(__profesoresUsuario))
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(__profesoresPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -746,7 +718,7 @@ public class Interfaz extends javax.swing.JFrame {
                         .addComponent(__MOSTRAR_PROFESORES, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(__AGREGAR_PROFESOR, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -998,14 +970,6 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event___profesoresPasswordActionPerformed
 
-    private void __profesoresHorasInvestigacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresHorasInvestigacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___profesoresHorasInvestigacionActionPerformed
-
-    private void __profesoresSueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___profesoresSueldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___profesoresSueldoActionPerformed
-
     private void __MODIFICAR_PROFESORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___MODIFICAR_PROFESORActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event___MODIFICAR_PROFESORActionPerformed
@@ -1022,18 +986,6 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event___cursosidCursoActionPerformed
 
-    private void __cursosCreditosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___cursosCreditosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___cursosCreditosActionPerformed
-
-    private void __cursosHorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___cursosHorasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___cursosHorasActionPerformed
-
-    private void __cursosPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___cursosPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___cursosPrecioActionPerformed
-
     private void __AGREGAR_CURSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___AGREGAR_CURSOActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event___AGREGAR_CURSOActionPerformed
@@ -1045,14 +997,6 @@ public class Interfaz extends javax.swing.JFrame {
     private void __alumnosDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___alumnosDireccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event___alumnosDireccionActionPerformed
-
-    private void __alumnosCreditosActualesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___alumnosCreditosActualesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___alumnosCreditosActualesActionPerformed
-
-    private void __alumnosMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___alumnosMatriculaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event___alumnosMatriculaActionPerformed
 
     private void __alumnosPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event___alumnosPasswordActionPerformed
         // TODO add your handling code here:
@@ -1154,30 +1098,30 @@ public class Interfaz extends javax.swing.JFrame {
     public javax.swing.JButton __MOSTRAR_PROFESORES;
     public javax.swing.JComboBox<String> __alumnosAlumnos;
     public javax.swing.JTextField __alumnosCorreo;
-    public javax.swing.JTextField __alumnosCreditosActuales;
+    public javax.swing.JFormattedTextField __alumnosCreditosActuales;
     public javax.swing.JComboBox<String> __alumnosCurso;
     public javax.swing.JComboBox<String> __alumnosCursosMatriculados;
     public javax.swing.JTextField __alumnosDireccion;
-    public javax.swing.JTextField __alumnosMatricula;
+    public javax.swing.JFormattedTextField __alumnosMatricula;
     public javax.swing.JTextField __alumnosPassword;
     public javax.swing.JFormattedTextField __alumnosTelefono;
     public javax.swing.JTextField __alumnosUsuario;
     public javax.swing.JTextField __alumnosidAlumno;
     public javax.swing.JTextField __alumnosnombreAlumno;
-    public javax.swing.JTextField __cursosCreditos;
+    public javax.swing.JFormattedTextField __cursosCreditos;
     public javax.swing.JComboBox<String> __cursosCursos;
-    public javax.swing.JTextField __cursosHoras;
-    public javax.swing.JTextField __cursosPrecio;
+    public javax.swing.JFormattedTextField __cursosHoras;
+    public javax.swing.JFormattedTextField __cursosPrecio;
     public javax.swing.JComboBox<String> __cursosProfesor;
     public javax.swing.JComboBox<String> __cursosTipo;
     public javax.swing.JTextField __cursosidCurso;
     public javax.swing.JTextField __departamento;
     public javax.swing.JComboBox<String> __profesoresDepartamento;
-    public javax.swing.JTextField __profesoresHorasInvestigacion;
+    public javax.swing.JFormattedTextField __profesoresHorasInvestigacion;
     public javax.swing.JTextField __profesoresNombre;
     public javax.swing.JTextField __profesoresPassword;
     public javax.swing.JComboBox<String> __profesoresProfesores;
-    public javax.swing.JTextField __profesoresSueldo;
+    public javax.swing.JFormattedTextField __profesoresSueldo;
     public javax.swing.JComboBox<String> __profesoresTipo;
     public javax.swing.JTextField __profesoresTutorias;
     public javax.swing.JTextField __profesoresUsuario;

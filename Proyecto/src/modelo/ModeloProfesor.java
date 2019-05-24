@@ -19,6 +19,8 @@ public class ModeloProfesor extends Database {
     /** Constructor de clase */
     public ModeloProfesor (){}
     
+    
+    //Obtenemos todos los registros de la tabla Profesores y los pintamos en una tabla
     public DefaultTableModel getTablaProfesoresGeneral()
     {
       DefaultTableModel tablemodel = new DefaultTableModel();
@@ -65,41 +67,6 @@ public class ModeloProfesor extends Database {
         return tablemodel;
     }
     
-    public DefaultTableModel getTablaProfesorPersonal(String idProfesor)
-    {
-      DefaultTableModel tablemodel = new DefaultTableModel();
-      int registros = 0;
-      String[] columNames = {"Nombre", "Departamento", "Tipo", "Tutorias", "Horas de Investigación", "Sueldo",
-          "ID", "Usuario", "Contraseña"};
-      
-    //se crea una matriz con tantas filas y columnas que necesite
-    Object[][] data = new String[1][9];
-      try{
-          //realizamos la consulta sql y llenamos los datos en la matriz "Object[][] data"
-         PreparedStatement pstm = this.getConexion().prepareStatement("CALL getTablaProfesorPersonal ('"+idProfesor+"')");
-         ResultSet res = pstm.executeQuery();
-         int i=0;
-         while(res.next()){
-                data[i][0] = res.getString( "nombreProfesor" );
-                data[i][1] = res.getString( "nombreDepartamento" );
-                data[i][2] = res.getString( "tipoProfesor" );
-                data[i][3] = res.getString( "tutorias" );
-                data[i][4] = res.getString( "horasInvestigacion" );
-                data[i][5] = res.getString("sueldo" );
-                data[i][6] = res.getString( "idProfesor" );
-                data[i][7] = res.getString( "usuario" );
-                data[i][8] = res.getString( "contrasena" );
-            i++;
-         }
-         res.close();
-         //se añade la matriz de datos en el DefaultTableModel
-         tablemodel.setDataVector(data, columNames );
-         }catch(SQLException e){
-            System.err.println( e.getMessage() );
-        }
-        return tablemodel;
-    }
-    
     /** Elimina un registro dado su ID -> Llave primaria */
     public boolean EliminarProfesor( String id )
     {
@@ -118,7 +85,7 @@ public class ModeloProfesor extends Database {
         return res;
     }
     
-    /** Registra un nuevo producto */
+    /** Registra un nuevo profesor */
     public boolean nuevoProfesor(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
             String tutorias, String horasInvestigacion,String sueldo, String idProfesor,
             String usuario, String contrasena)     
@@ -157,6 +124,7 @@ public class ModeloProfesor extends Database {
          return false;
     }
     
+    //Metodo auxiliar para validara los datos de entrada
     private boolean valida_datos(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
             String tutorias, String horasInvestigacion,String sueldo, String idProfesor,
             String usuario, String contrasena){
@@ -167,6 +135,7 @@ public class ModeloProfesor extends Database {
         }else return true;
     }
     
+    //Obtenemos las id de Profesores y las pintamos en un combobox 
     public DefaultComboBoxModel getListaProfesor(){
       String nombre;
       DefaultComboBoxModel ahh = new DefaultComboBoxModel();
@@ -191,7 +160,7 @@ public class ModeloProfesor extends Database {
 			return new DefaultComboBoxModel(elementos.toArray());    
     }
     
-    /** Registra un nuevo producto */
+    /** Modifica el regustro de un profesor */
     public boolean modificaProfesor(String nombreProfesor, String nombreDepartamento , String tipoProfesor,
             String tutorias, String horasInvestigacion,String sueldo, String idProfesor, String usuario, String contrasena)     
     {
