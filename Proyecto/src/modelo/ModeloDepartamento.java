@@ -120,7 +120,7 @@ public class ModeloDepartamento extends Database {
       //para formar la matriz de datos
       try{
          PreparedStatement pstm = this.getConexion().prepareStatement( 
-                 "CALL getTablaDepartamentoCursos ('"+departamento+"')");
+                 "SELECT COUNT(*) as total FROM Cursos C JOIN Profesores P ON P.idProfesor=C.idProfesor WHERE P.nombreDepartamento='"+departamento+"'");
          ResultSet res = pstm.executeQuery();
          res.next();
          registros = res.getInt("total");
