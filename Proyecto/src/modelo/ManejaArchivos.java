@@ -28,6 +28,10 @@ public class ManejaArchivos {
 			entrada.close();
 		} catch (IOException ex) {
 			ex.printStackTrace();
+                        lista.add("apaez_ProyectoGrupo");
+                        lista.add("apaez_alberto");
+                        lista.add("Salesianas1**");
+                        lista.add("jdbc:mysql://apaez.salesianas.es/");
 		}
 		return lista;
 	}    
